@@ -1,40 +1,144 @@
-/* title (nombre del producto)
-description (descripción del producto)
-price (precio)
-thumbnail (ruta de imagen)
-code (código identificador)
-stock (número de piezas disponibles)
+class Product {
+    constructor(title, description, price, thumbnail, code, stock) {
+        if ((title ?? 'empty') === 'empty') {
+            throw new Error('Please provide a value for "title".');
+        }
 
-Debe contar con un método “addProduct” el cual agregará un producto al arreglo de productos inicial.
-Validar que no se repita el campo “code” y que todos los campos sean obligatorios
-Al agregarlo, debe crearse con un id autoincrementable
-Debe contar con un método “getProducts” el cual debe devolver el arreglo con todos los productos creados hasta ese momento
+        if ((description ?? 'empty') === 'empty') {
+            throw new Error('Please provide a value for "description".');
+        }
 
+        if ((price ?? 'empty') === 'empty') {
+            throw new Error('Please provide a value for "price".');
+        }
 
-Debe contar con un método “getProductById” el cual debe buscar en el arreglo el producto que coincida con el id
-En caso de no coincidir ningún id, mostrar en consola un error “Not found”
+        if (price < 0) {
+            throw new RangeError('"Price" must have a value equal or greater to 0 (zero).');
+        }
 
- */
+        if ((thumbnail ?? 'empty') === 'empty') {
+            throw new Error('Please provide a value for "thumbnail".');
+        }
 
-/* 
-Guia: 
-hay que hacer una clase product managaer y 3 metodos */
+        if ((code ?? 'empty') === 'empty') {
+            throw new Error('Please provide a value for "code".');
+        }
 
+        if ((stock ?? 'empty') === 'empty') {
+            throw new Error('Please provide a value for "stock".');
+        }
 
+        if (stock < 0) {
+            throw new Error('"Stock" must have a value equal or greater to 0 (zero).');
+        }
 
-/* Testing 
+        this.title = title.trim();
+        this.description = description.trim();
+        this.price = price;
+        this.thumbnail = thumbnail.trim();
+        this.code = code.trim().toUpperCase();
+        this.stock = stock;
+    }
+};
 
-Se creará una instancia de la clase “ProductManager”
-Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
-Se llamará al método “addProduct” con los campos:
-title: “producto prueba”
-description:”Este es un producto prueba”
-price:200,
-thumbnail:”Sin imagen”
-code:”abc123”,
-stock:25
-El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
-Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
-Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
-Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
- */
+class ProductManager {
+    static #lastProductId;
+
+    #products = [];
+
+    constructor() {
+    }
+
+    addProduct = (product) => {
+        if (!this.#products.some(p => p.code === product.code)) {
+            product.id = ProductManager.#getLastProductId();
+
+            this.#products.push(product);
+            return product.id;
+        }
+
+        throw new Error(`There is already a product with code ${product.code}.`);
+    }
+
+    getProducts = () => {
+        return this.#products;
+    }
+
+    getProductById = (productId) => {
+        const foundProduct = this.#products.find(product => product.id === productId);
+
+        if (foundProduct) return foundProduct;
+
+        throw new Error(`Product with id ${productId} was not found.`);
+    }
+
+    getProductByCode = (productCode) => {
+        const foundProduct = this.#products.find(product => product.code === productCode.trim().toUpperCase());
+
+        if (foundProduct) return foundProduct;
+
+        throw new Error(`Product with code ${productCode} was not found.`);
+    }
+
+    static peekNextId = () => {
+        if (!ProductManager.#lastProductId) {
+            return 1;
+        }
+
+        return ProductManager.#lastProductId + 1;
+    }
+
+    static #getLastProductId = () => {
+        if (!ProductManager.#lastProductId) {
+            ProductManager.#lastProductId = 0;
+        }
+
+        return ++ProductManager.#lastProductId;
+    }
+}
+
+const productManager = new ProductManager();
+if (productManager) {
+    console.log('New ProductManager instance has been created.');
+}
+
+console.log('getProducts()', productManager.getProducts());
+
+console.log('addProduct()',
+    productManager.addProduct(
+        new Product(
+            "producto prueba",
+            "Este es un producto prueba",
+            200,
+            "Sin imagen",
+            "abc123",
+            25
+        )
+    )
+);
+
+console.log('getProducts()', productManager.getProducts());
+
+try {
+    console.log('addProduct()',
+        productManager.addProduct(
+            new Product(
+                "producto prueba",
+                "Este es un producto prueba",
+                200,
+                "Sin imagen",
+                "abc123",
+                25
+            )
+        )
+    );
+} catch (err) {
+    console.error(err);
+}
+
+try {
+    console.log('getProductById(1)', productManager.getProductById(1));
+    console.log('getProductById(100)', productManager.getProductById(100));  // Return Error
+} catch (err) {
+    console.error(err);
+}
