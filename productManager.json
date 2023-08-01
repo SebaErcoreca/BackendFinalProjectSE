@@ -1,1 +1,95 @@
-{"lastProductId":2,"products":[{"title":"producto prueba","description":"Este es un producto prueba","price":200,"thumbnail":"Sin imagen","code":"ABC123","stock":25,"id":2}]}
+{
+    "lastProductId": 10,
+    "products": [
+        {
+            "title": "Product 1",
+            "description": "Description 1",
+            "price": 500,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 1",
+            "stock": 400,
+            "id": 1
+        },
+        {
+            "title": "Product 2",
+            "description": "Description 2",
+            "price": 100,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 2",
+            "stock": 200,
+            "id": 2
+        },
+        {
+            "title": "Product 3",
+            "description": "Description 3",
+            "price": 400,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 3",
+            "stock": 100,
+            "id": 3
+        },
+        {
+            "title": "Product 4",
+            "description": "Description 4",
+            "price": 600,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 4",
+            "stock": 100,
+            "id": 4
+        },
+        {
+            "title": "Product 5",
+            "description": "Description 5",
+            "price": 300,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 5",
+            "stock": 500,
+            "id": 5
+        },
+        {
+            "title": "Product 6",
+            "description": "Description 6",
+            "price": 400,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 6",
+            "stock": 400,
+            "id": 6
+        },
+        {
+            "title": "Product 7",
+            "description": "Description 7",
+            "price": 600,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 7",
+            "stock": 700,
+            "id": 7
+        },
+        {
+            "title": "Product 8",
+            "description": "Description 8",
+            "price": 500,
+            "thumbnail": "No thumbnail",
+            "code": "CODE8",
+            "stock": 400,
+            "id": 8
+        },
+        {
+            "title": "Product 9",
+            "description": "Description 9",
+            "price": 300,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 9",
+            "stock": 500,
+            "id": 9
+        },
+        {
+            "title": "Product 10",
+            "description": "Description 10",
+            "price": 700,
+            "thumbnail": "No thumbnail",
+            "code": "CODE 10",
+            "stock": 300,
+            "id": 10
+        }
+    ]
+}

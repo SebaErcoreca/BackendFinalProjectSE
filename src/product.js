@@ -9,45 +9,43 @@ export default class Product {
      */
     constructor(title, description, price, thumbnail, code, stock) {
 
-        console.log('Please provide the values of:');
-
         if ((title ?? 'empty') === 'empty') {
-            throw new Error('Title:');
+            throw new Error('Title:')
         }
 
         if ((description ?? 'empty') === 'empty') {
-            throw new Error('Description: ');
+            throw new Error('Description: ')
         }
 
         if ((price ?? 'empty') === 'empty') {
-            throw new Error('Price: ');
+            throw new Error('Price: ')
         }
 
         if (price < 0) {
-            throw new RangeError('Try again, price value must be greater or equal to 0: ');
+            throw new RangeError('Try again, price value must be greater or equal to 0: ')
         }
 
         if ((thumbnail ?? 'empty') === 'empty') {
-            throw new Error('Thumbnail: ');
+            throw new Error('Thumbnail: ')
         }
 
         if ((code ?? 'empty') === 'empty') {
-            throw new Error('SKU code: ');
+            throw new Error('SKU code: ')
         }
 
         if ((stock ?? 'empty') === 'empty') {
-            throw new Error('Stock: ');
+            throw new Error('Stock: ')
         }
 
         if (stock < 0) {
-            throw new Error('Try again, stock value must be greater or equal to 0: ');
+            throw new Error('Try again, stock value must be greater or equal to 0: ')
         }
 
-        this.title = title.trim();
-        this.description = description.trim();
-        this.price = price;
-        this.thumbnail = thumbnail.trim();
-        this.code = code.trim().toUpperCase();
-        this.stock = stock;
+        this.title = title.trim()
+        this.description = description.trim()
+        this.price = price
+        this.thumbnail = thumbnail.trim()
+        this.code = code.trim().toUpperCase()
+        this.stock = stock
     }
 }
