@@ -55,61 +55,6 @@
             "category": "category",
             "status": true,
             "id": 5
-        },
-        {
-            "title": "Product 6",
-            "description": "Description 6",
-            "price": 400,
-            "thumbnail": "No thumbnail",
-            "code": "CODE 6",
-            "stock": 400,
-            "category": "category",
-            "status": true,
-            "id": 6
-        },
-        {
-            "title": "Product 7",
-            "description": "Description 7",
-            "price": 600,
-            "thumbnail": "No thumbnail",
-            "code": "CODE 7",
-            "stock": 700,
-            "category": "category",
-            "status": true,
-            "id": 7
-        },
-        {
-            "title": "Product 8",
-            "description": "Description 8",
-            "price": 500,
-            "thumbnail": "No thumbnail",
-            "code": "CODE8",
-            "stock": 400,
-            "category": "category",
-            "status": true,
-            "id": 8
-        },
-        {
-            "title": "Product 9",
-            "description": "Description 9",
-            "price": 300,
-            "thumbnail": "No thumbnail",
-            "code": "CODE 9",
-            "stock": 500,
-            "category": "category",
-            "status": true,
-            "id": 9
-        },
-        {
-            "title": "Product 10",
-            "description": "Description 10",
-            "price": 700,
-            "thumbnail": "No thumbnail",
-            "code": "CODE 10",
-            "stock": 300,
-            "category": "category",
-            "status": true,
-            "id": 10
         }
     ]
 }

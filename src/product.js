@@ -6,46 +6,54 @@ export default class Product {
      * @param {String} thumbnail - Product URL image.
      * @param {String} code - SKU product code (uppercase).
      * @param {Number} stock
+     * @param {Boolean} status - Product status
+     * @param {String} category - Product category
      */
-    constructor(title, description, price, thumbnail, code, stock) {
+    constructor(title, description, price, thumbnail, code, stock, status = true, category) {
 
         if ((title ?? 'empty') === 'empty') {
-            throw new Error('Title:')
+            throw new Error('Title field is required.');
         }
 
         if ((description ?? 'empty') === 'empty') {
-            throw new Error('Description: ')
+            throw new Error('Description field is required.');
         }
 
         if ((price ?? 'empty') === 'empty') {
-            throw new Error('Price: ')
+            throw new Error('Price field is required.');
         }
 
         if (price < 0) {
-            throw new RangeError('Try again, price value must be greater or equal to 0: ')
+            throw new RangeError('Price value must be greater or equal to 0.');
         }
 
         if ((thumbnail ?? 'empty') === 'empty') {
-            throw new Error('Thumbnail: ')
+            throw new Error('Thumbnail field is required.');
         }
 
         if ((code ?? 'empty') === 'empty') {
-            throw new Error('SKU code: ')
+            throw new Error('Code field is required.');
         }
 
         if ((stock ?? 'empty') === 'empty') {
-            throw new Error('Stock: ')
+            throw new Error('Stock field is required.');
         }
 
         if (stock < 0) {
-            throw new Error('Try again, stock value must be greater or equal to 0: ')
+            throw new Error('Stock value must be greater or equal to 0: ');
         }
 
-        this.title = title.trim()
-        this.description = description.trim()
-        this.price = price
-        this.thumbnail = thumbnail.trim()
-        this.code = code.trim().toUpperCase()
-        this.stock = stock
+        if ((category ?? "empty") === "empty"){
+            throw new Error('Category field is required.')
+        }
+
+        this.title = title.trim();
+        this.description = description.trim();
+        this.price = price;
+        this.thumbnail = thumbnail.trim();
+        this.code = code.trim().toUpperCase();
+        this.stock = stock;
+        this.category = category;
+        this.status = status;
     }
 }
