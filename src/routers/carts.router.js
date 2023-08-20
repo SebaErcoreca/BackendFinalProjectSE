@@ -4,12 +4,10 @@ import Cart from "../cart.js";
 import CartItem from "../cartItem.js";
 import ProductManager from "../productManager.js";
 
-const cartsPath = "public/cart.json";
-const productsPath = "public/products.json";
+const cartsPath = "./src/storage/cart.json";
+const productsPath = "./src/storage/products.json";
 
 const CartsRouter = Router();
-
-//!Same logic is applied as in products.router.js
 
 CartsRouter.get("/:cid", (req, res) => {
   const returnObject = {};
@@ -46,17 +44,12 @@ CartsRouter.get("/:cid", (req, res) => {
 });
 
 CartsRouter.post("/", (req, res) => {
-  const returnObject = {};
-  let returnStatus = 201;
-
-  const cartManager = new CartManager(cartsPath);
-
-  const newCartId = cartManager.addCart(new Cart());
-
-  returnObject.status = "success";
-  returnObject.newCartId = newCartId;
-
-  res.status(returnStatus).json(returnObject).end();
+    try{
+    CartManager.createCart();
+    res.status(201).json({message: 'Cart created'})
+  } catch (error) {
+    res.status(501).json({error: error.message})
+  }
 });
 
 CartsRouter.post("/:cid/product/:pid", (req, res) => {

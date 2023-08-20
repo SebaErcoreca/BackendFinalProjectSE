@@ -31,9 +31,6 @@ export default class Cart {
     return persistObject;
   };
 
-  /**
-   * @param {{ path: string | undefined; }} object
-   */
   set manager(object) {
     this.manager = new CartManager(object.path);
   }

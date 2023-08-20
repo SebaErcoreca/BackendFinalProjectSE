@@ -1,0 +1,13 @@
+<h1>PRODUCT LIST</h1>
+<div id="listContainer">
+    {{#each products}}
+        <div class="product" style="display: flex; gap: 1rem; align-items: center;">
+            <h3>{{title}}</h3>
+            <p>{{description}}</p>
+            <p>Price: {{price}}</p>
+            <p>id: {{id}}</p>
+            <p>code :{{code}}</p>
+            <p>Stock:{{stock}}</p>
+        </div>
+    {{/each}}
+</div>

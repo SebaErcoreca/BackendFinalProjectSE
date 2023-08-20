@@ -1,0 +1,16 @@
+<h1>REAL TIME PRODUCTS</h1>
+<div id="listContainer">
+    {{#each products}}
+    <div class="product" style="display: flex; gap: 1rem; align-items: center;">
+        <h3>Title: {{title}}</h3>
+        <p>Id: {{id}}</p>
+        <p>Code :{{code}}</p>
+        <p>Description: {{description}}</p>
+        <p>Price: {{price}}</p>
+        <p>Stock:{{stock}}</p>
+    </div>
+    {{/each}}
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.js"></script>

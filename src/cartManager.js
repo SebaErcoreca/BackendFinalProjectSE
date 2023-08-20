@@ -3,20 +3,20 @@ import { writeFileSync, readFileSync, existsSync } from "fs";
 
 export default class CartManager {
   static #lastCartId;
-  static #defaultPersistentFilePath = "./CartManager.json";
+  static #defaultPersistentFilePath = "./src/storage/carts.json";
   static #persistentFileOptions = { encoding: "utf-8" };
 
-  #carts;
+  #carts = [];
   #path = "";
 
   /* 
   Creates a new CartManager instance.
   */
-  constructor(filePath = null) {
+  constructor(filePath) {
     this.#path = filePath ?? CartManager.#defaultPersistentFilePath;
     this.#init();
   }
-
+  
   /* 
   Returns the current number of products.js in CartManager
   */
@@ -54,7 +54,7 @@ export default class CartManager {
 
 
   addCart = (cart) => {
-    const newCartId = CartManager.#generateNexCartId();
+    const newCartId = CartManager.#generateNextCartId();
 
     const managedCart = {
       ...cart,
@@ -74,12 +74,10 @@ export default class CartManager {
     const cartQuery = this.#carts.find(
       (existingCart) => existingCart.id === id
     );
-
     if (cartQuery) {
       const originalId = cartQuery.id;
       cartQuery = { ...cart, id: originalId };
     }
-
     throw new Error(`Product ${id} is not in Cart.`);
   };
 
@@ -134,5 +132,5 @@ export default class CartManager {
     );
   };
 
-  static #generateNexCartId = () => ++CartManager.#lastCartId;
+  static #generateNextCartId = () => ++CartManager.#lastCartId;
 }
