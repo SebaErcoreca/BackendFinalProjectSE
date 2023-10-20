@@ -4,7 +4,7 @@ import Cart from "../cart.js";
 import CartItem from "../cartItem.js";
 import ProductManager from "../productManager.js";
 
-const cartsPath = "./src/storage/cart.json";
+const cartsPath = "./src/storage/carts.json";
 const productsPath = "./src/storage/products.json";
 
 const CartsRouter = Router();
