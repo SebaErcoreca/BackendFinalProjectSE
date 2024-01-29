@@ -9,8 +9,13 @@ const productsPath = "./src/storage/products.json";
 
 const CartsRouter = Router();
 
+/* 
+Given the id returns the cart
+*/
+
 CartsRouter.get("/:cid", (req, res) => {
-  const returnObject = {};
+
+  const requestedCart = {};
   let returnStatus = 200;
 
   const { cid } = req.params;
@@ -18,9 +23,10 @@ CartsRouter.get("/:cid", (req, res) => {
 
   if (isNaN(cartId) || cartId < 1 || cartId % 1 !== 0) {
     returnStatus = 400;
-    returnObject.status = "error";
-    returnObject.message = 'Error: parameter "cid" must be a positive integer.';
+    requestedCart.status = "error";
+    requestedCart.message = 'Error: parameter "cid" must be a positive integer.';
   } else {
+    
     const cartManager = new CartManager(cartsPath);
 
     const requestedCart = cartManager.getCartById(cartId);
@@ -28,19 +34,18 @@ CartsRouter.get("/:cid", (req, res) => {
     if (requestedCart) {
       const productManager = new ProductManager(productsPath);
 
-      returnObject.status = "success";
-      returnObject.cart = { id: requestedCart.id };
-      returnObject.cart.products = requestedCart.map((cartProduct) =>
+      requestedCart.status = "success";
+      requestedCart.cart = { id: requestedCart.id };
+      requestedCart.cart.products = requestedCart.map((cartProduct) =>
         productManager.getProductById(cartProduct.id)
       );
     } else {
-      returnStatus = 400;
-      returnObject.status = "error";
-      returnObject.message = `Error: Cart ${cartId} wasn't found.`;
+      requestedCart.status = "error";
+      requestedCart.message = `Error: Cart ${cartId} wasn't found.`;
     }
   }
 
-  res.status(returnStatus).json(returnObject).end();
+  res.status(returnStatus).json(requestedCart).end();
 });
 
 CartsRouter.post("/", (req, res) => {

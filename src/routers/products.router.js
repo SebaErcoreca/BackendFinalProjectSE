@@ -12,6 +12,7 @@ Given the id returns the product
 ProductsRouter.get("/:pid", (req, res) => {
   const requestedProducts = {};
   let returnStatus = 200;
+  
   const { pid } = req.params;
   const pId = Number(pid ?? 0);
 
@@ -20,7 +21,9 @@ ProductsRouter.get("/:pid", (req, res) => {
     requestedProducts.status = "error";
     requestedProducts.message = "Error: Product id must be a positive integer.";
   } else {
+
     const productManager = new ProductManager(productsPath);
+
     const requestedProduct = productManager.getProductById(pId);
 
     if (requestedProduct) {
